@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicAngularModule } from '@ionic/angular';
 import { HomePage } from './home/home.page';
+import { LoginPage } from './login/login.page';
 
 @NgModule({
   imports: [
@@ -9,10 +10,11 @@ import { HomePage } from './home/home.page';
     IonicAngularModule.forRoot(),
   ],
   declarations: [
-      HomePage,
+    HomePage,
+    LoginPage
   ],
   entryComponents: [
-      HomePage
+    LoginPage
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
