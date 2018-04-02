@@ -1,7 +1,7 @@
 {
   "name": "aeion4",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "adaept",
   "homepage": "http://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -52,5 +52,5 @@
     "tslint": "5.9.1",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "An adaept project"
 }
