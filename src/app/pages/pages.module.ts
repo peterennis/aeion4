@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicAngularModule } from '@ionic/angular';
 import { HomePage } from './home/home.page';
 import { LoginPage } from './login/login.page';
+import { MenuPage } from './menu/menu.page';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { LoginPage } from './login/login.page';
   ],
   declarations: [
     HomePage,
-    LoginPage
+    LoginPage,
+    MenuPage
   ],
   entryComponents: [
     LoginPage
