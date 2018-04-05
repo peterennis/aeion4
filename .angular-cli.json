@@ -11,8 +11,8 @@
         "assets",
         {
           "glob": "**/*",
-          "input": "../node_modules/@ionic/core/dist",
-          "output": "./ionic/core"
+          "input": "../node_modules/@ionic/angular/dist/ionic",
+          "output": "./ionic"
         }
       ],
       "index": "index.html",
@@ -21,7 +21,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "",
+      "prefix": "app",
       "styles": [
         "theme/variables.scss",
         "global.scss"

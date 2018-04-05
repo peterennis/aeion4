@@ -1,9 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicAngularModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
-import { PagesModule } from './pages/pages.module';
+//import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -13,11 +13,11 @@ import { PagesModule } from './pages/pages.module';
   ],
   imports: [
     BrowserModule,
-    IonicAngularModule.forRoot(),
-    PagesModule,
+    IonicModule.forRoot(),
+    //PagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  //schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
