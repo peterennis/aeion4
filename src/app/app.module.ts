@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
-//import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +15,10 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    //PagesModule,
+    ComponentsModule,
+    PagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  //schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

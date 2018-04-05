@@ -1,23 +1,18 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicAngularModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { HomePage } from './home/home.page';
-import { LoginPage } from './login/login.page';
-import { MenuPage } from './menu/menu.page';
 
 @NgModule({
   imports: [
     CommonModule,
-    IonicAngularModule.forRoot(),
+    IonicModule.forRoot(),
   ],
   declarations: [
     HomePage,
-    LoginPage,
-    MenuPage
   ],
   entryComponents: [
-    LoginPage
+    HomePage,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class PagesModule { }
+export class PagesModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LoginPage } from './pages/login/login.page';
+import { HomePage } from './pages/home/home.page';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,6 @@ import { LoginPage } from './pages/login/login.page';
 })
 export class AppComponent {
 
-  pageLogin = LoginPage;
+  pageHome = HomePage;
 
 }
