@@ -27,7 +27,6 @@
     "@ionic/pro": "1.0.20",
     "@ionic/schematics-angular": "latest",
     "core-js": "^2.5.3",
-    "npm": "^5.8.0",
     "rxjs": "6.0.0-rc.0",
     "zone.js": "latest"
   },
@@ -46,6 +45,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "npm": "^5.8.0",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
