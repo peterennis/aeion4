@@ -1,6 +1,5 @@
 {
   "name": "aeion4",
-  "app_id": "",
   "type": "angular",
   "integrations": {
     "cordova": {}
