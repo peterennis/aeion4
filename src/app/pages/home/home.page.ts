@@ -69,4 +69,9 @@ export class HomePage {
     }    
   }
   
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter');
+    this.doStars();
+  }
+
 }
