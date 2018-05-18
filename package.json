@@ -27,7 +27,7 @@
     "@ionic/pro": "1.0.20",
     "@ionic/schematics-angular": "latest",
     "core-js": "^2.5.3",
-    "npm": "^5.10.0",
+    "latest-version": "^3.1.0",
     "rxjs": "6.1.0",
     "zone.js": "^0.8.26"
   },
