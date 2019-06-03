@@ -1,16 +1,4 @@
-p {
-    color: red;
+.welcome-card ion-img {
+  max-height: 35vh;
+  overflow: hidden;
 }
-
-ion-content {
-    --ion-background-color: #d5ffd5;
-}
-
-img {
-    transition: all 1.5s ease;
-    margin: 10px;
-}
-
-//img:hover {
-//    transform: rotate(180deg) ;
-//}

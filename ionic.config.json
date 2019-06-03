@@ -1,8 +1,5 @@
 {
-  "name": "aeion4",
-  "type": "angular",
-  "integrations": {
-    "cordova": {}
-  },
-  "hooks": {}
+  "name": "aeione",
+  "integrations": {},
+  "type": "angular"
 }
