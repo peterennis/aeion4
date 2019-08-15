@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
 
   constructor() { }
+
+  // Define interval in milliseconds
+  intervalMs = 10;
 
   doLogin() {
     console.log('HomePage.doLogin');
@@ -29,7 +33,7 @@ export class HomePage implements OnInit {
     const maxD = Math.sqrt(centerX * centerX + centerY * centerY) + 40;
 
     createStars(nStars);
-    beginAnimation();
+    runAnimation('start');
 
     function createStars(n) {
       for (let i = 1; i <= n; i++) {
@@ -64,7 +68,7 @@ export class HomePage implements OnInit {
       drawField();
     }
 
-    function beginAnimation() {
+    function runAnimation(signal: string) {
       const timeout = setInterval(updateImage, 10);
     }
   }
@@ -81,6 +85,22 @@ export class HomePage implements OnInit {
   ngOnInit() {
     console.log('ngOnInit HomePage');
     this.doStars();
+
+    /*
+      Create an observable that emits 'Hello', 'World' etc. on subscription
+      Ref: http://www.jiodev.com/angular/learn-rxjs/create
+    */
+    // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: space-before-function-paren
+    const hello = new Observable(function (observer) {
+      observer.next('Hello');
+      observer.next('World');
+      observer.next('A small step for man');
+      observer.next('A giant leap for mankind');
+    });
+
+    // output: 'Hello', 'World', ...
+    const subscribe = hello.subscribe(val => console.log(val));
+
   }
 
 }
