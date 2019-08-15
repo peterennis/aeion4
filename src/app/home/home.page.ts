@@ -89,9 +89,9 @@ export class HomePage implements OnInit {
     /*
       Create an observable that emits 'Hello', 'World' etc. on subscription
       Ref: http://www.jiodev.com/angular/learn-rxjs/create
+      Ref: https://brianflove.com/2018/03/04/rxjs-the-basics/
     */
-    // tslint:disable-next-line: only-arrow-functions tslint:disable-next-line: space-before-function-paren
-    const hello = new Observable(function (observer) {
+    const hello: Observable<string> = new Observable(observer => {
       observer.next('Hello');
       observer.next('World');
       observer.next('A small step for man');
