@@ -30,6 +30,10 @@ export class ListPage implements OnInit {
     }
   }
 
+  // ionViewDidEnter() {
+  //  console.log('ionViewDidEnter ListPage');
+  // }
+
   ngOnInit() {
   }
   // add back when alpha.4 is out
