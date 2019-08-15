@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor( ) { }
+  constructor() { }
 
   doLogin() {
     console.log('HomePage.doLogin');
@@ -69,8 +69,17 @@ export class HomePage {
     }
   }
 
+  ionViewDidLeave() {
+    console.log('ionViewDidLeave HomePage');
+    // TURN OFF this.doStars();
+  }
+
   ionViewDidEnter() {
-    console.log('ionViewDidEnter');
+    console.log('ionViewDidEnter HomePage');
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit HomePage');
     this.doStars();
   }
 
