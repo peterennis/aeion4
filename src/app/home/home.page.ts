@@ -95,6 +95,8 @@ export class HomePage implements OnInit {
       Ref: http://www.jiodev.com/angular/learn-rxjs/create
       Ref: https://brianflove.com/2018/03/04/rxjs-the-basics/
     */
+
+    /*
     const hello: Observable<string> = new Observable(observer => {
       observer.next('Hello');
       observer.next('World');
@@ -104,6 +106,7 @@ export class HomePage implements OnInit {
 
     // output: 'Hello', 'World', ...
     const subscribeHello$ = hello.subscribe(val => console.log(val));
+    */
 
     const rnd: Observable<number> = new Observable(observer => {
       const interval = setInterval(() => {
