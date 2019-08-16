@@ -34,6 +34,7 @@ export class HomePage implements OnInit, OnDestroy {
     const maxD = Math.sqrt(centerX * centerX + centerY * centerY) + 40;
 
     createStars(nStars);
+
     runAnimation(signal);
 
     function createStars(n) {
@@ -59,7 +60,7 @@ export class HomePage implements OnInit, OnDestroy {
       }
     }
 
-    function updateImage() {
+    function updateImage(): number {
       for (let i = 0; i < nStars; i++) {
         distances[i]++;
         if (distances[i] > maxD) {
@@ -67,12 +68,27 @@ export class HomePage implements OnInit, OnDestroy {
         }
       }
       drawField();
+      return 0;
     }
 
     // tslint:disable-next-line: no-shadowed-variable
     function runAnimation(signal: string) {
+      const runit: Observable<number> = new Observable(observer => {
+        const interval = setInterval(() => {
+          observer.next(updateImage());
+        }, 1000);
+
+        // teardown
+        return () => {
+          clearInterval(interval);
+        };
+      });
+
       if (signal === 'start') {
-        const timeout = setInterval(updateImage, 10);
+        // const timeout = setInterval(updateImage, 10);
+        const subscription = runit.subscribe(val => console.log(val));
+        const subscription2 = runit.subscribe(val => updateImage());
+
       } else {
         console.log('signal <> start - implied stop')
       }
@@ -119,19 +135,22 @@ export class HomePage implements OnInit, OnDestroy {
     const subscribeHello$ = hello.subscribe(val => console.log(val));
     */
 
+    /*
     const rnd: Observable<number> = new Observable(observer => {
-      const interval = setInterval(() => {
-        observer.next(this.randomIntFromInterval(1, 100));
-      }, 1000);
+    const interval = setInterval(() => {
+    observer.next(this.randomIntFromInterval(1, 100));
+    }, 1000);
 
-      // teardown
-      return () => {
-        clearInterval(interval);
-      };
+    // teardown
+    return () => {
+    clearInterval(interval);
+    };
     });
 
     // output: 'Hello', 'World', ...
     const subscribeRnd$ = rnd.subscribe(val => console.log(val));
+    */
+
   }
 
 }
