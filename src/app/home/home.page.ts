@@ -105,11 +105,15 @@ export class HomePage implements OnInit {
     // output: 'Hello', 'World', ...
     const subscribeHello$ = hello.subscribe(val => console.log(val));
 
-
     const rnd: Observable<number> = new Observable(observer => {
       const interval = setInterval(() => {
         observer.next(this.randomIntFromInterval(1, 100));
       }, 1000);
+
+      // teardown
+      return () => {
+        clearInterval(interval);
+      };
     });
 
     // output: 'Hello', 'World', ...
