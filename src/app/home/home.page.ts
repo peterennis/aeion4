@@ -107,8 +107,9 @@ export class HomePage implements OnInit {
 
 
     const rnd: Observable<number> = new Observable(observer => {
-      observer.next(this.randomIntFromInterval(1, 100));
-
+      const interval = setInterval(() => {
+        observer.next(this.randomIntFromInterval(1, 100));
+      }, 1000);
     });
 
     // output: 'Hello', 'World', ...
