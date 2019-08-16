@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
+  private subscription: Subscription;
+
+  // Define interval milliseconds for observable
+  intervalMs$: Observable<number>;
 
   constructor() { }
-
-  // Define interval in milliseconds
-  intervalMs = 10;
 
   doLogin() {
     console.log('HomePage.doLogin');
   }
 
-  doStars() {
+  doStars(signal: string) {
     // Ref: http://www.petercollingridge.co.uk/tutorials/svg/animation/starfield/
 
     const svgDocument = document.getElementById('starfield');
@@ -33,7 +34,7 @@ export class HomePage implements OnInit {
     const maxD = Math.sqrt(centerX * centerX + centerY * centerY) + 40;
 
     createStars(nStars);
-    runAnimation('start');
+    runAnimation(signal);
 
     function createStars(n) {
       for (let i = 1; i <= n; i++) {
@@ -68,8 +69,13 @@ export class HomePage implements OnInit {
       drawField();
     }
 
+    // tslint:disable-next-line: no-shadowed-variable
     function runAnimation(signal: string) {
-      const timeout = setInterval(updateImage, 10);
+      if (signal === 'start') {
+        const timeout = setInterval(updateImage, 10);
+      } else {
+        console.log('signal <> start - implied stop')
+      }
     }
   }
 
@@ -86,9 +92,14 @@ export class HomePage implements OnInit {
     console.log('ionViewDidEnter HomePage');
   }
 
+  ngOnDestroy() {
+    console.log('ngOnDestroy HomePage');
+    this.subscription.unsubscribe();
+  }
+
   ngOnInit() {
     console.log('ngOnInit HomePage');
-    this.doStars();
+    this.doStars('start');
 
     /*
       Create an observable that emits 'Hello', 'World' etc. on subscription
