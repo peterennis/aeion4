@@ -73,6 +73,10 @@ export class HomePage implements OnInit {
     }
   }
 
+  randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
   ionViewDidLeave() {
     console.log('ionViewDidLeave HomePage');
     // TURN OFF this.doStars();
@@ -99,8 +103,16 @@ export class HomePage implements OnInit {
     });
 
     // output: 'Hello', 'World', ...
-    const subscribe = hello.subscribe(val => console.log(val));
+    const subscribeHello$ = hello.subscribe(val => console.log(val));
 
+
+    const rnd: Observable<number> = new Observable(observer => {
+      observer.next(this.randomIntFromInterval(1, 100));
+
+    });
+
+    // output: 'Hello', 'World', ...
+    const subscribeRnd$ = rnd.subscribe(val => console.log(val));
   }
 
 }
