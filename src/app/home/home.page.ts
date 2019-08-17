@@ -9,16 +9,16 @@ import { Observable, Subscription } from 'rxjs';
 export class HomePage implements OnInit, OnDestroy {
   private subscription: Subscription;
 
-  // Define interval milliseconds for observable
-  intervalMs$: Observable<number>;
 
   constructor() { }
+
+  private signal = true;
 
   doLogin() {
     console.log('HomePage.doLogin');
   }
 
-  doStars(signal: string) {
+  doStars(signal: boolean) {
     // Ref: http://www.petercollingridge.co.uk/tutorials/svg/animation/starfield/
 
     const svgDocument = document.getElementById('starfield');
@@ -72,7 +72,7 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     // tslint:disable-next-line: no-shadowed-variable
-    function runAnimation(signal: string) {
+    function runAnimation(signal: boolean) {
       const runit: Observable<number> = new Observable(observer => {
         const interval = setInterval(() => {
           observer.next(updateImage());
@@ -84,13 +84,13 @@ export class HomePage implements OnInit, OnDestroy {
         };
       });
 
-      if (signal === 'start') {
+      if (signal) {
         // const timeout = setInterval(updateImage, 10);
         // const subscription = runit.subscribe(val => console.log(val));
         const subscription2 = runit.subscribe(val => updateImage());
 
       } else {
-        console.log('signal <> start - implied stop')
+        console.log('signal false = stop');
       }
     }
   }
@@ -99,12 +99,12 @@ export class HomePage implements OnInit, OnDestroy {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  private startMethod(): string {
-    return 'start';
+  private startMethod(): boolean {
+    return true;
   }
 
-  private stopMethod(): string {
-    return 'stop';
+  private stopMethod(): boolean {
+    return false;
   }
 
   /*
