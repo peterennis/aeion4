@@ -99,6 +99,15 @@ export class HomePage implements OnInit, OnDestroy {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  private startMethod(): string {
+    return 'start';
+  }
+
+  private stopMethod(): string {
+    return 'stop';
+  }
+
+  /*
   ionViewDidLeave() {
     console.log('ionViewDidLeave HomePage');
     // TURN OFF this.doStars();
@@ -107,15 +116,16 @@ export class HomePage implements OnInit, OnDestroy {
   ionViewDidEnter() {
     console.log('ionViewDidEnter HomePage');
   }
+  */
 
   ngOnDestroy() {
     console.log('ngOnDestroy HomePage');
-    this.subscription.unsubscribe();
+    this.doStars(this.stopMethod());
   }
 
   ngOnInit() {
     console.log('ngOnInit HomePage');
-    this.doStars('start');
+    this.doStars(this.startMethod());
 
     /*
       Create an observable that emits 'Hello', 'World' etc. on subscription
