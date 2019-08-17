@@ -76,7 +76,7 @@ export class HomePage implements OnInit, OnDestroy {
       const runit: Observable<number> = new Observable(observer => {
         const interval = setInterval(() => {
           observer.next(updateImage());
-        }, 1000);
+        }, 250);
 
         // teardown
         return () => {
@@ -86,7 +86,7 @@ export class HomePage implements OnInit, OnDestroy {
 
       if (signal === 'start') {
         // const timeout = setInterval(updateImage, 10);
-        const subscription = runit.subscribe(val => console.log(val));
+        // const subscription = runit.subscribe(val => console.log(val));
         const subscription2 = runit.subscribe(val => updateImage());
 
       } else {
