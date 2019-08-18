@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -6,19 +6,18 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy {
+export class HomePage implements OnInit {
   private subscription: Subscription;
-
+  public signal = false;
 
   constructor() { }
 
-  private signal = true;
 
   doLogin() {
     console.log('HomePage.doLogin');
   }
 
-  doStars(signal: boolean) {
+  doStars() {
     // Ref: http://www.petercollingridge.co.uk/tutorials/svg/animation/starfield/
 
     const svgDocument = document.getElementById('starfield');
@@ -33,9 +32,12 @@ export class HomePage implements OnInit, OnDestroy {
     const centerY = +svgDocument.getAttributeNS(null, 'height') / 2;
     const maxD = Math.sqrt(centerX * centerX + centerY * centerY) + 40;
 
-    createStars(nStars);
-
-    runAnimation(signal);
+    if (this.signal) {
+      createStars(nStars);
+      runAnimation(this.signal);
+    } else {
+      console.log('this.signal false = stop');
+    }
 
     function createStars(n) {
       for (let i = 1; i <= n; i++) {
@@ -72,22 +74,23 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     // tslint:disable-next-line: no-shadowed-variable
-    function runAnimation(signal: boolean) {
-      const runit: Observable<number> = new Observable(observer => {
-        const interval = setInterval(() => {
-          observer.next(updateImage());
-        }, 250);
+    function runAnimation(run: boolean) {
+      if (run) {
+        const runit: Observable<number> = new Observable(observer => {
+          const interval = setInterval(() => {
+            observer.next(updateImage());
+          }, 250);
 
-        // teardown
-        return () => {
-          clearInterval(interval);
-        };
-      });
+          // teardown
+          return () => {
+            clearInterval(interval);
+          };
+        });
 
-      if (signal) {
+
         // const timeout = setInterval(updateImage, 10);
         // const subscription = runit.subscribe(val => console.log(val));
-        const subscription2 = runit.subscribe(val => updateImage());
+        const subscription = runit.subscribe(val => updateImage());
 
       } else {
         console.log('signal false = stop');
@@ -99,33 +102,30 @@ export class HomePage implements OnInit, OnDestroy {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  private startMethod(): boolean {
-    return true;
-  }
+  //  private startMethod(): boolean {
+  //    return true;
+  //  }
+  //
+  //  private stopMethod(): boolean {
+  //    return false;
+  //  }
 
-  private stopMethod(): boolean {
-    return false;
-  }
-
-  /*
-  ionViewDidLeave() {
-    console.log('ionViewDidLeave HomePage');
+  ionViewWillLeave() {
+    console.log('ionViewWillLeave HomePage');
     // TURN OFF this.doStars();
+    this.signal = false;
+    this.doStars();
   }
-
-  ionViewDidEnter() {
-    console.log('ionViewDidEnter HomePage');
-  }
-  */
-
-  ngOnDestroy() {
-    console.log('ngOnDestroy HomePage');
-    this.doStars(this.stopMethod());
-  }
+  /*
+    ionViewDidEnter() {
+      console.log('ionViewDidEnter HomePage');
+    }
+    */
 
   ngOnInit() {
     console.log('ngOnInit HomePage');
-    this.doStars(this.startMethod());
+    this.signal = true;
+    this.doStars();
 
     /*
       Create an observable that emits 'Hello', 'World' etc. on subscription
